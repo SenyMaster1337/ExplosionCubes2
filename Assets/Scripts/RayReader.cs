@@ -8,6 +8,8 @@ public class RayReader : MonoBehaviour
     private RaycastHit _hit;
     private Ray _ray;
 
+    private int _positionZ = 1;
+
     public event Action<Cube> CubeClicked;
 
     private void OnEnable()
@@ -22,7 +24,7 @@ public class RayReader : MonoBehaviour
 
     private void CheckRay()
     {
-        _ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1));
+        _ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, _positionZ));
 
         if (Physics.Raycast(_ray, out _hit))
         {
