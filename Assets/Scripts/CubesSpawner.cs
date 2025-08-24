@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CubeSpawner : MonoBehaviour
+public class CubesSpawner : MonoBehaviour
 {
     [SerializeField] private ColorChanger _colorChanger;
 

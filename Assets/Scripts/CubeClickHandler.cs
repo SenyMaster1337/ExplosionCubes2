@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class CubesCreator : MonoBehaviour
+public class CubeClickHandler : MonoBehaviour
 {
     [SerializeField] private RayReader _rayReader;
 
     private void OnEnable()
     {
-        _rayReader.CubeClicked += CubeClickHandler;
+        _rayReader.CubeClicked += Handle;
     }
 
     private void OnDisable()
     {
-        _rayReader.CubeClicked -= CubeClickHandler;
+        _rayReader.CubeClicked -= Handle;
     }
 
-    private void CubeClickHandler(Cube cube)
+    private void Handle(Cube cube)
     {
-        CubeSpawner cubeSpawner = FindObjectOfType<CubeSpawner>();
+        CubesSpawner cubeSpawner = FindObjectOfType<CubesSpawner>();
         Exploder exploder = FindObjectOfType<Exploder>();
 
         cubeSpawner.Spawn(cube);
