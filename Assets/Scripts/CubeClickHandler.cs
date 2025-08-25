@@ -3,6 +3,12 @@ using UnityEngine;
 public class CubeClickHandler : MonoBehaviour
 {
     [SerializeField] private RayReader _rayReader;
+    [SerializeField] private CubesSpawner _cubesSpawner;
+    [SerializeField] private Exploder _exploder;
+
+    private int _minPercentageValue = 50;
+    private int _maxPercentageValue = 100;
+    private int _number = 2;
 
     private void OnEnable()
     {
@@ -14,12 +20,20 @@ public class CubeClickHandler : MonoBehaviour
         _rayReader.CubeClicked -= Handle;
     }
 
-    private void Handle(Cube cube)
+    private void Handle(Vector3 position, Vector3 scale)
     {
-        CubesSpawner cubeSpawner = FindObjectOfType<CubesSpawner>();
-        Exploder exploder = FindObjectOfType<Exploder>();
+        if (GetBooleanValue(UnityEngine.Random.Range(0, _maxPercentageValue)))
+        {
+            _cubesSpawner.Spawn(position, scale);
+            _exploder.Explode(position);
 
-        cubeSpawner.Spawn(cube);
-        exploder.Explode(cube.Prefab.transform.position);
+            _minPercentageValue /= _number;
+            _maxPercentageValue /= _number;
+        }
+    }
+
+    private bool GetBooleanValue(int percentageValue)
+    {
+        return percentageValue > _minPercentageValue;
     }
 }

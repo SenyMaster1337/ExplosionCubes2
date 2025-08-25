@@ -6,7 +6,7 @@ public class Exploder : MonoBehaviour
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
 
-    public void Explode(Vector3 ExplodePosition)
+    public void Explode(Vector3 position)
     {
         var ExplodableObjects = GetExplodableObjects();
 
@@ -14,7 +14,7 @@ public class Exploder : MonoBehaviour
         {
             foreach (Rigidbody explodableObject in ExplodableObjects)
             {
-                explodableObject.AddExplosionForce(_explosionForce, ExplodePosition, _explosionRadius);
+                explodableObject.AddExplosionForce(_explosionForce, position, _explosionRadius);
             }
         }
     }
